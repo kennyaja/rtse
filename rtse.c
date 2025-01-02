@@ -71,7 +71,7 @@ int main(int argc, char** argv) {
 
 	write(client_sock_fd, buffer, strlen(buffer) + 1);
 
-	printf("Queued command '%s' at server with ID %s", argv[2], argv[1]);  // queueing wasnt an intended feature (idk how to get the sockets to not queue) but its cool so im keeping it
+	printf("Queued command '%s' at server with ID %s\n", argv[2], argv[1]);  // queueing wasnt an intended feature (idk how to get the sockets to not queue) but its cool so im keeping it
 
 	return 0;
 }
