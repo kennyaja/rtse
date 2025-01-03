@@ -31,7 +31,7 @@ void connect_to_sock(char *path) {
 
 	int ret = connect(client_sock_fd, (struct sockaddr*) &sockaddr, sizeof(struct sockaddr_un));
 	if (ret == -1) {
-		fprintf(stderr, "Error: No server found running with specified ID");
+		fprintf(stderr, "Error: No server found running with specified ID\n");
 		// return;
 		exit(1);
 	}
