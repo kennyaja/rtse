@@ -7,14 +7,14 @@ As of right now, it only runs on Linux and other Unix-based systems (untested) d
 
 ## Demo
 
-llllllooolooolollloolol no demo here
+https://github.com/user-attachments/assets/2be815c7-8b0c-4d57-bb39-dd52bfb5844e
 
 
 ## Building
 
 To build the latest commit:
 ```
-git clone (web name here)
+git clone https://github.com/kennyaja/rtse
 cd rtse
 make
 ```
