@@ -50,6 +50,7 @@ int main(int argc, char** argv) {
 
 	if (strtol(argv[1], NULL, 10) < 0 || strtol(argv[1], NULL, 10) > 2147483647) {
 		fprintf(stderr, "Error: ID must be between 0 and 2147483647\n");
+		return 1;
 	}
 
 	char *runtime_dir = getenv("XDG_RUNTIME_DIR");
