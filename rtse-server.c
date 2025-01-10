@@ -15,7 +15,7 @@ int accept_sock_fd;
 
 int id = -1;
 
-void handle_sigint() {
+void cleanup() {
 	remove(sock_path);
 	exit(0);
 }
@@ -68,7 +68,8 @@ int main(int argc, char **argv) {
 		return 1;
 	}
 
-	signal(SIGINT, handle_sigint);
+	signal(SIGINT, cleanup);
+	signal(SIGQUIT, cleanup);
 	
 	create_sock(runtime_dir);
 	while (fopen(sock_path, "r") != NULL) {
