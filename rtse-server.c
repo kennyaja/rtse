@@ -84,6 +84,9 @@ int main(int argc, char **argv) {
 	printf("Created socket at %s (id: %d)\n", sock_path, id);
 
 	for (;;) {
+		printf("> ");
+		fflush(stdout);
+
 		accept_sock_fd = accept(server_sock_fd, NULL, NULL);
 
 		char input_buffer[BUFFER_SIZE];
