@@ -3,5 +3,5 @@
 #endif
 
 #ifndef SOCK_PATH_FORMAT
-#define SOCK_PATH_FORMAT "%s/rtse%d"
+#define SOCK_PATH_FORMAT "%s/rtse_%s"
 #endif

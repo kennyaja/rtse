@@ -8,12 +8,13 @@
 #include <sys/time.h>
 
 #include "consts.h"
+#include "strcheck.h"
 
 char *sock_path;
 int server_sock_fd;
 int accept_sock_fd;
 
-int id = -1;
+char *id;
 
 void cleanup() {
 	remove(sock_path);
@@ -21,8 +22,15 @@ void cleanup() {
 }
 
 void randomize_id() {
-	srand(time(NULL));
-	id = rand();
+	char charset[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+	char rand_id[9];
+
+	for (int i = 0; i < sizeof(rand_id) - 1; i++) {
+		srand(time(NULL) + i);
+		rand_id[i] = charset[rand() % (int)sizeof(charset)];
+	}
+	rand_id[8] = '\0';
+	asprintf(&id, "%s", rand_id);
 }
 
 void create_sock(char *path) {
@@ -51,11 +59,10 @@ void create_sock(char *path) {
 
 int main(int argc, char **argv) {
 	if (argc > 1) {
-		int specified_id = strtol(argv[1], NULL, 10);
-		if (specified_id >= 0) {
-			id = specified_id;
+		if (is_alphanumeric(argv[1])) {
+			id = argv[1];
 		} else {
-			fprintf(stderr, "Warning: Value is not within range of 0 and 2147483647, ignoring.\n");
+			fprintf(stderr, "Warning: Value is not alphanumeric, ignoring.\n");
 		}
 	} else {
 		randomize_id();
@@ -82,7 +89,7 @@ int main(int argc, char **argv) {
 		return 1;
 	}
 
-	printf("Created socket at %s (id: %d)\n", sock_path, id);
+	printf("Created socket at %s (id: %s)\n", sock_path, id);
 
 	for (;;) {
 		printf("> ");

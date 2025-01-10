@@ -7,6 +7,7 @@
 #include <sys/ioctl.h>
 
 #include "consts.h"
+#include "strcheck.h"
 
 char *sock_path;
 int client_sock_fd;
@@ -48,8 +49,8 @@ int main(int argc, char** argv) {
 		return 1;
 	}
 
-	if (strtol(argv[1], NULL, 10) < 0 || strtol(argv[1], NULL, 10) > 2147483647) {
-		fprintf(stderr, "Error: ID must be between 0 and 2147483647\n");
+	if (!is_alphanumeric(argv[1])) {
+		fprintf(stderr, "Error: ID must be between alphanumeric.\n");
 		return 1;
 	}
 
@@ -60,7 +61,7 @@ int main(int argc, char** argv) {
 		return 1;
 	}
 
-	asprintf(&sock_path, SOCK_PATH_FORMAT, runtime_dir, (int)strtol(argv[1], NULL, 10));
+	asprintf(&sock_path, SOCK_PATH_FORMAT, runtime_dir, argv[1]);
 
 	connect_to_sock(sock_path);
 
