@@ -59,10 +59,11 @@ void create_sock(char *path) {
 
 int main(int argc, char **argv) {
 	if (argc > 1) {
-		if (is_alphanumeric(argv[1])) {
+		if (is_alphanumeric(argv[1]) && strlen(argv[1]) <= ID_CHAR_LIMIT) {
 			id = argv[1];
 		} else {
-			fprintf(stderr, "Warning: Value is not alphanumeric, ignoring.\n");
+			fprintf(stderr, "Warning: Value is not alphanumeric or longer than %d characters, ignoring.\n", ID_CHAR_LIMIT);
+			randomize_id();
 		}
 	} else {
 		randomize_id();

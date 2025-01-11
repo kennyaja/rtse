@@ -54,6 +54,10 @@ int main(int argc, char** argv) {
 		return 1;
 	}
 
+	if (strlen(argv[1]) > ID_CHAR_LIMIT) {
+		fprintf(stderr, "Error: ID is longer than %d characters.\n", ID_CHAR_LIMIT);
+	}
+
 	char *runtime_dir = getenv("XDG_RUNTIME_DIR");
 
 	if (runtime_dir == NULL) {
