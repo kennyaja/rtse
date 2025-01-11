@@ -4,6 +4,7 @@
 #include <time.h>
 #include <unistd.h>
 #include <sys/socket.h>
+#include <sys/stat.h>
 #include <sys/un.h>
 #include <sys/time.h>
 
@@ -78,7 +79,12 @@ int main(int argc, char **argv) {
 
 	signal(SIGINT, cleanup);
 	signal(SIGQUIT, cleanup);
+
+	char *sock_dir;
+	asprintf(&sock_dir, "%s/rtse", runtime_dir);
 	
+	mkdir(sock_dir, 0755);
+
 	create_sock(runtime_dir);
 	while (fopen(sock_path, "r") != NULL) {
 		randomize_id();
