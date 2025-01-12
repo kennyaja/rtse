@@ -25,8 +25,6 @@ void connect_to_sock(char *path) {
 		return;
 	}
 
-	int buffern = ioctl(client_sock_fd, FIONREAD);
-
 	sockaddr.sun_family = AF_UNIX;
 	strcpy(sockaddr.sun_path, sock_path);
 
