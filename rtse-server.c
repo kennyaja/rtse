@@ -17,7 +17,7 @@ int accept_sock_fd;
 
 char *id;
 
-void cleanup() {
+void quit() {
 	remove(sock_path);
 	exit(0);
 }
@@ -77,8 +77,8 @@ int main(int argc, char **argv) {
 		return 1;
 	}
 
-	signal(SIGINT, cleanup);
-	signal(SIGQUIT, cleanup);
+	signal(SIGINT, quit);
+	signal(SIGQUIT, quit);
 
 	char *sock_dir;
 	asprintf(&sock_dir, "%s/rtse", runtime_dir);
