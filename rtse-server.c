@@ -59,6 +59,11 @@ void create_sock(char *path) {
 }
 
 int main(int argc, char **argv) {
+	if (!isatty(fileno(stdout))) {
+		fprintf(stderr, "stdout isn't a terminal (please don't run this through a pipe).\n");
+		quit(1);
+	}
+
 	if (argc > 1) {
 		if (is_alphanumeric(argv[1]) && strlen(argv[1]) <= ID_CHAR_LIMIT) {
 			id = argv[1];
