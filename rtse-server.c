@@ -17,9 +17,9 @@ int accept_sock_fd;
 
 char *id;
 
-void quit() {
+void quit(int exit_code) {
 	remove(sock_path);
-	exit(0);
+	exit(exit_code);
 }
 
 void randomize_id() {
