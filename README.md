@@ -7,7 +7,7 @@ As of right now, it only runs on Linux and other Unix-based systems (untested) d
 
 ## Demo
 
-https://github.com/user-attachments/assets/d051af58-47b9-46fb-900a-e97e6789fada
+https://github.com/user-attachments/assets/8b6d98ec-c410-42a6-88a9-833628b8954a
 
 
 ## Building
