@@ -1,21 +1,16 @@
 init:
-	gcc -o rtse-server rtse-server.c
 	gcc -o rtse rtse.c
 
-localinstall:
-	cp rtse ~/.local/bin/
-	cp rtse-server ~/.local/bin/
-
 install:
-	cp rtse /bin/
-	cp rtse-server /bin/
-
-localuninstall:
-	rm ~/.local/bin/rtse ~/.local/bin/rtse-server
+ifdef INSTALL_DIR
+	cp rtse $(INSTALL_DIR)
+else
+	cp rtse /bin
+endif
 
 uninstall:
-	rm /bin/rtse /bin/rtse-server
+	rm /bin/rtse
 
 clean:
-	rm rtse rtse-server
+	rm rtse
 
