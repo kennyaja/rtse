@@ -1,3 +1,10 @@
+# ARCHIVAL NOTICE
+
+turns out something like `echo "{command}" > {pipe file}` in one shell `tail -f {pipe file} | while read cmd; do sh -c "$cmd"; done` in another pretty much does the same thing
+
+also code kinda bad XD
+
+
 # [r]un [t]his [s]omewhere [e]lse
 
 **rtse** is a command line tool for running and displaying output of commands in another shell instance (e.g. inside another pane of a terminal multiplexer). It could be useful in some workflows. I don't really know about any other uses.
